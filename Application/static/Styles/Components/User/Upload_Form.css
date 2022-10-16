@@ -1,0 +1,27 @@
+#use_file_upload_form{
+    width: 600px;
+    height: 400px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: royalblue;
+    padding: 20px 0;
+}
+#use_file_upload_form label{
+    font-size: 20px;
+    padding: 10px 30px;
+    background: aqua;
+}
+#use_file_upload_form input{
+    display: none;
+}
+#use_file_upload_form button{
+    margin: 20px;
+    background-color: coral;
+    font-size: 25px;
+    padding: 10px 30px;
+}
+
+
