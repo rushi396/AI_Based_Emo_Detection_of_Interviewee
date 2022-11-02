@@ -1,0 +1,33 @@
+{% include "./Components/default_start.html" %}
+
+<div id="textAnalysisPage">
+
+    <header>
+        <h1>Emotion Analysis System</h1>
+    <nav>
+        <a href="#about">About</a><a href="#analysis">Analysis</a>
+    </nav>
+</header>
+<hr />
+<section>
+    <div class="outputSection">
+        <div id="default">
+            <h2 style="color: gray">Emotion detection</h2>
+            <h3>Based on the input, we will try to predict the emotion behind the input text in multiple classes</h3>
+        </div>
+    </div>
+    <form onsubmit="getResult(event)">
+        <h2><i class="far fa-comment-alt"></i> Enter Your Text</h2>
+        <textarea
+        name="input"
+        id="input"
+        placeholder="Enter Text.........." required
+        ></textarea>
+        <button type="submit">Check Emotion</button>
+    </form>
+</section>
+
+
+</div>
+
+{% include "./Components/default_end.html" %}

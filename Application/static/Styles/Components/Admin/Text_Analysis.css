@@ -1,0 +1,95 @@
+#textAnalysisPage header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+#textAnalysisPage header h1{
+    color: #f5f6fa;
+}
+#textAnalysisPage nav{
+    min-width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#textAnalysisPage section{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap:wrap-reverse;
+    align-items: center;
+    min-height: 85vh;
+    background: url('https://images.unsplash.com/photo-1575278220902-cdf1a07a0421?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80')  no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    width: 90%;
+    margin:10px auto;
+    border-radius: 10px;
+}
+#textAnalysisPage .outputSection{
+    min-width: 500px;
+    min-height: 60vh;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#textAnalysisPage .outputSection h2,#textAnalysisPage .outputSection h3{
+    color: black;
+    text-align: center;
+    max-width: 380px;
+}
+
+#textAnalysisPage #default{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+#textAnalysisPage #default img{
+    max-width: 250px;
+    height: 200px;
+}
+#textAnalysisPage #default{
+    display: flex;
+}
+#textAnalysisPage form{
+min-width: 300px;
+min-height: 500px;
+background-color: aqua;
+border-radius: 10px;
+box-shadow: -5px 5px 10px  #3c6382;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+#textAnalysisPage form h2{
+    color: royalblue;
+}
+#textAnalysisPage textarea{
+    margin: 30px 10px;
+    height: 120px;
+    width: 220px;
+    border-radius: 10px;
+    padding: 5px;
+    background: transparent;
+    text-decoration: underline;
+    font-size: 1.3em;
+    color: black;
+    font-weight: bolder;
+    overflow: hidden;
+    resize: none;
+}
+
+#textAnalysisPage button{
+    margin: 10px;
+    padding: 10px 30px;
+    font-size: 1.2em;
+    background-color: coral;
+    border-radius: 10px;
+}
