@@ -1,0 +1,56 @@
+import React, { useContext } from 'react'
+import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import { userContext } from '../../App'
+
+function Header() {
+    let { login } = useContext(userContext)
+    let [window_width, updateWindowWidth] = useState(window.innerWidth);
+    window.addEventListener('resize', () => {
+        updateWindowWidth(window.innerWidth);
+    })
+    let [toggleOptions, updateToggleOptions] = useState(false);
+    return (
+        <>
+            <header>
+                <div className="header">
+                    <h1>
+                        <NavLink to="/">Emotion Detection of Interviewee</NavLink>
+                    </h1>
+                    <p style={{color:"white",fontSize:"0.8em"}}>Using Machine Learning, Deep Learning, Computer Vision and Natural Language Processing</p>
+                </div>
+                <nav className={`DesktopNav ${window_width > 786 ? "display_flex" : "display_none"}`}>
+                    <a href="/#processFlow">Process Flow</a>
+                    <a href="/#dataTypes">Data Analysis Types</a>
+                    <NavLink to="/dashboard">dashboard</NavLink>
+                </nav>
+                {
+                    login.user ? (
+                        <>
+                            <div className="user">
+                                <div className="name" onClick={() => { updateToggleOptions(!toggleOptions) }}>
+                                    Hello Shivkumar
+                                </div>
+                                {
+                                    toggleOptions ? (<>
+                                        <div className="options">
+                                            <NavLink to="/logout">Logout</NavLink>
+                                        </div>
+                                    </>) : (
+                                        <></>
+                                    )
+                                }
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <button> <NavLink to="/login">Login</NavLink></button>
+                        </>
+                    )
+                }
+            </header>
+        </>
+    )
+}
+
+export default Header
