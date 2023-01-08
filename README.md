@@ -1,4 +1,4 @@
-<h1 align="center" style="text-align: center;font-size: 50px;">AI_Based_Emo_Detection_of_Interviewee using Machine Learning</h1>
+<h1 align="center" style="text-align: center;font-size: 50px;">AI Based Emotion Detection of Interview</h1>
 
 # Version 1.0.0
 
