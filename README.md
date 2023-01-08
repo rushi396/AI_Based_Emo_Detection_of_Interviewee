@@ -15,7 +15,7 @@
 </ul>
 <hr>
 
-## Types of Systems is get Developer
+## Types of Systems is get Developed
 <ol>
         <li>Transcript Emotion Detection System</li>
         <li>Image Emotion Detection System</li>
