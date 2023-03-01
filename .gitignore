@@ -10,3 +10,5 @@ __pycache__
 package-lock.json
 yarn.lock
 data_reference.txt
+
+Temporary_Storage

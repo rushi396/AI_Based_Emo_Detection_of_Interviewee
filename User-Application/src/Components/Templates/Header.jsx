@@ -20,9 +20,19 @@ function Header() {
                     <p style={{color:"white",fontSize:"0.8em"}}>Using Machine Learning, Deep Learning, Computer Vision and Natural Language Processing</p>
                 </div>
                 <nav className={`DesktopNav ${window_width > 786 ? "display_flex" : "display_none"}`}>
-                    <a href="/#processFlow">Process Flow</a>
-                    <a href="/#dataTypes">Data Analysis Types</a>
+                <NavLink to="/">Home</NavLink>
                     <NavLink to="/dashboard">dashboard</NavLink>
+                    {
+                    login.user ? (
+                        <>
+                    <NavLink to="/textreport">Text Analysis</NavLink>
+                            
+                        </>
+                    ) : (
+                        <>
+                        </>
+                    )
+                }
                 </nav>
                 {
                     login.user ? (

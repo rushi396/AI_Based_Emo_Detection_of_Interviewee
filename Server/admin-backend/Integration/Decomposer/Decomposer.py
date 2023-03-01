@@ -24,3 +24,8 @@ class Decomposer:
         audioToTextConverter.convertToMonoSoundBytesFromWavFile(self.audio_file,mono_sound_path)
         audioToTextConverter.audioToTextConverterFromMonoSound(mono_sound_path,output_transcript_file_path,output_timestamp_json_path)
         print("done Converted to text")
+    def convertAudioToTextFromGivenFile(self,audio_file,model_path,mono_sound_path="audio_with_mono_sound.wav",output_transcript_file_path="transcript.json",output_timestamp_json_path="timestamp.json"):
+        audioToTextConverter.setAudioToTextConverterModel(model_path)
+        audioToTextConverter.convertToMonoSoundBytesFromWavFile(audio_file,mono_sound_path)
+        audioToTextConverter.audioToTextConverterFromMonoSound(mono_sound_path,output_transcript_file_path,output_timestamp_json_path)
+        print("done Converted to text")

@@ -8,19 +8,21 @@ class Integrator:
         self.decomposer=Decomposer.Decomposer()
         self.preProcessor=ModelProcessor.PreProcessor()
         self.emotionPredictor=ModelProcessor.VideoEmotionPrediction()
-    def setModelsAndParameters(self,face_cascade,audio_recognizer_model_path,image_model,text_model,audio_model,text_vectorizer):
+    def setModelsAndParameters(self,text_model="",text_vectorizer="",audio_model="",audio_recognizer_model_path="",face_cascade="",image_model="",):
         self.face_cascade=face_cascade
         self.audio_recognizer_model_path=audio_recognizer_model_path
         self.image_model=image_model
         self.audio_model=audio_model
         self.text_model=text_model
         self.text_vectorizer=text_vectorizer
-    def setFilePaths(self,video_file_name,audio_file_path="audio.wav",mono_sound_path="mono_sound.wav",output_transcript_file_path="transcript.json",output_timestamp_json_path="timestamp.json"):
-        self.video_file_name=video_file_name
+    def setFilePaths(self,file_name="",audio_file_path="audio.wav",mono_sound_path="mono_sound.wav",output_transcript_file_path="transcript.json",output_timestamp_json_path="timestamp.json"):
+        self.video_file_name=file_name
         self.audio_file_path=audio_file_path
         self.mono_sound_path=mono_sound_path
         self.output_transcript_file_path=output_transcript_file_path
         self.output_timestamp_json_path=output_timestamp_json_path
+    
+    
     def generateOutputs(self):
         self.decomposer.setVideoFile(self.video_file_name)
         self.images_array=self.decomposer.getImageArrayOfIntervals()
@@ -42,6 +44,22 @@ class Integrator:
         self.video_predictions=self.emotionPredictor.getArrayOfCumulativePredictions()
         self.final_prediction=self.emotionPredictor.getCumulativePredictions()
         print(self.final_prediction)
+
+
+    def generateAudioOutputs(self):
+        self.decomposer.convertAudioToTextFromGivenFile(
+            model_path=self.audio_recognizer_model_path,
+            audio_file=self.audio_file_path,
+            mono_sound_path=self.mono_sound_path,
+            output_transcript_file_path=self.output_transcript_file_path,
+            output_timestamp_json_path=self.output_timestamp_json_path
+        )
+        mfcc_values=self.preProcessor.audioArrayProcessor(self.audio_file_path)
+        with open(self.output_transcript_file_path) as file:
+            text_array=json.load(file)
+        text_vector=self.preProcessor.textArrayProcessor(self.text_vectorizer,text_array)
+        self.audio_predictions=self.emotionPredictor.getAudioPredictions(self.audio_model,mfcc_values)
+        self.text_predictions=self.emotionPredictor.getTextualPredictions(self.text_model,text_vector)
     @staticmethod
     def getInterviewResult(positives,negatives,neutrals,total,success_factor=0.6):
         if (positives+neutrals)/total>success_factor:
@@ -51,11 +69,82 @@ class Integrator:
         else:
             return "Neutral Result"
 
+    def getTextReport(self,textInput):
+        text_array=textInput.split(".")
+        text_vector=self.preProcessor.textArrayProcessor(self.text_vectorizer,text_array)
+        self.text_predictions=self.emotionPredictor.getTextualPredictions(self.text_model,text_vector)
+        text_counts=self.emotionPredictor.getCountsOfTextPredictions()
+        
+        final_text_prediction=class_list[list(text_counts.values()).index(max(text_counts.values()))]
+        min_text_prediction=class_list[list(text_counts.values()).index(min(text_counts.values()))]
+        text_neutral_count=0
+        for neutral_class in neutral_classes:
+            text_neutral_count+=text_counts[neutral_class]
+        self.text_data={
+            "final_prediction":final_text_prediction,
+            "counts":text_counts,
+            "predictions":self.text_predictions,
+            "min_prediction":min_text_prediction,
+            "neutrality_value":text_neutral_count,
+            "total_predicted_values":sum(text_counts.values())
+        }
+        self.Report={
+            "text_data":self.text_data
+        }
+        return self.Report
+
+
+
+    def getAudioOutputs(self):
+        text_counts=self.emotionPredictor.getCountsOfTextPredictions()
+        audio_counts=self.emotionPredictor.getCountsOfAudioPredictions()
+        fluency_output=self.preProcessor.getSpeechFluency(self.audio_file_path,number_of_seconds=10)
+        
+        final_audio_prediction=class_list[list(audio_counts.values()).index(max(audio_counts.values()))]
+        final_text_prediction=class_list[list(text_counts.values()).index(max(text_counts.values()))]
+        
+        min_audio_prediction=class_list[list(audio_counts.values()).index(min(audio_counts.values()))]
+        min_text_prediction=class_list[list(text_counts.values()).index(min(text_counts.values()))]
+
+        audio_neutral_count=0
+        for neutral_class in neutral_classes:
+            audio_neutral_count+=audio_counts[neutral_class]
+        text_neutral_count=0
+        for neutral_class in neutral_classes:
+            text_neutral_count+=text_counts[neutral_class]
+
+
+        self.audio_data={
+            "final_prediction":final_audio_prediction,
+            "fluency_output":fluency_output,
+            "counts":audio_counts,
+            "predictions":self.audio_predictions,
+            "min_prediction":min_audio_prediction,
+            "neutrality_value":audio_neutral_count,
+            "total_predicted_values":sum(audio_counts.values())
+        }
+        self.text_data={
+            "final_prediction":final_text_prediction,
+            "counts":text_counts,
+            "predictions":self.text_predictions,
+            "min_prediction":min_text_prediction,
+            "neutrality_value":text_neutral_count,
+            "total_predicted_values":sum(text_counts.values())
+        }
+        self.Report={
+            "audio_data":self.audio_data,
+            "text_data":self.text_data,
+        }
+        return self.Report
+
     def getOutputs(self,success_factor=0.6):
         image_counts=self.emotionPredictor.getCountsOfImagePredictions()
         text_counts=self.emotionPredictor.getCountsOfTextPredictions()
         audio_counts=self.emotionPredictor.getCountsOfAudioPredictions()
         video_counts=self.emotionPredictor.getCountsOfVideoPredictions()
+        fluency_output=self.preProcessor.getSpeechFluency(self.audio_file_path,number_of_seconds=10)
+        
+        
         print(self.images_predictions)
         print(image_counts)
         print(self.text_predictions)
@@ -135,6 +224,7 @@ class Integrator:
         }
         self.audio_data={
             "final_prediction":final_audio_prediction,
+            "fluency_output":fluency_output,
             "counts":audio_counts,
             "predictions":self.audio_predictions,
             "min_prediction":min_audio_prediction,

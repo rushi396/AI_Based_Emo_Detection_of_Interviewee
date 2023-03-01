@@ -17,6 +17,8 @@ class PreProcessor:
         textArrayProcessor=TextProcessor.TextInputProcessor()
         textArrayProcessor.setVecorizer(vectorizer_path)
         return textArrayProcessor.getPreprocessTheArrayTexts(array_of_text)
+    def getSpeechFluency(self,audio_path,number_of_seconds=10):
+        return AudioProcessor.InputProcessor.getSpeechFluencyMeasure(audio_path,number_of_seconds)
 
 class VideoEmotionPrediction:
     def __init__(self) -> None:
@@ -31,6 +33,7 @@ class VideoEmotionPrediction:
         audioEmotionPredictor.setModel(model_path)
         self.Audio_Predictions=list(audioEmotionPredictor.predictClasses(array_of_mfcc_values))
         return self.Audio_Predictions
+
     def getTextualPredictions(self,model_path,input_vector):
         textEmotionPredictor=TextProcessor.TextSentimentAnalyser()
         textEmotionPredictor.setModel(model_path)

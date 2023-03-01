@@ -11,14 +11,14 @@ function VideoUpload({updateRefresh}) {
     async function submitTheFile(event) {
         event.preventDefault()
         console.log(file);
-        if (!!file && filename!="") {
+        if (!!file && filename!=="") {
             console.log(file.name);
             let extension = file.name.split(".")[file.name.split(".").length - 1];
             console.log(extension);
             if (
-                extension.toLowerCase() == "wmv" ||
-                extension.toLowerCase() == "mp4" ||
-                extension.toLowerCase() == "avi"
+                extension.toLowerCase() === "wmv" ||
+                extension.toLowerCase() === "mp4" ||
+                extension.toLowerCase() === "avi"
             ) {
                 console.log("extension accepted");
                 if (file.size < 100000000) {
@@ -49,8 +49,8 @@ function VideoUpload({updateRefresh}) {
     return (
         <div className='VideoFormContainer' id='VideoFormContainer'>
             <form onSubmit={submitTheFile}>
-                <h1>Select File To Upload</h1>
-                <label htmlFor="file">{filename==""?"Select File":filename}</label>
+                <h1>Select Video File To Upload</h1>
+                <label htmlFor="file">{filename===""?"Select File":filename}</label>
                 <input type="file" onChange={(event) => {
                     updateFile(event.target.files[0])
                     console.log(event.target.files[0]);

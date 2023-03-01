@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,jsonify
+from flask import Flask,request,jsonify
 import mysql.connector
 import hashlib
 import os
@@ -6,6 +6,16 @@ import time
 from Integration.Integrator import Integrator
 import cv2
 import json
+import cv2
+import time
+import pyaudio
+import wave
+from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips
+
+
+
+
+
 with open('../../Utils/database_config.env') as file:
     credentials=file.read()
 credentials=credentials.split(" ")
@@ -24,10 +34,10 @@ def generateReport():
     if request.method=='POST':
         Database_Connection,queryExecuter=connectToDatabase()
         print("Report Generator is started")
-        Pre_SQL_Query=f"UPDATE videos SET is_report_is_ready='Working' WHERE id={request.json['id']}"
+        Pre_SQL_Query=f"UPDATE files SET is_report_is_ready='Working' WHERE id={request.json['id']}"
         queryExecuter.execute(Pre_SQL_Query)
         Database_Connection.commit()
-        SELECT_Query=f"SELECT * FROM videos WHERE id={request.json['id']}"
+        SELECT_Query=f"SELECT * FROM files WHERE id={request.json['id']}"
         queryExecuter.execute(SELECT_Query)
         result=queryExecuter.fetchone()
         print(result[2])
@@ -44,7 +54,7 @@ def generateReport():
             text_vectorizer="../../Text Based Emotion Analysis/Model/Vectorizer.pickle"
         )
         integrator.setFilePaths(
-            video_file_name="./Data/Videos/"+video_file_name,
+            file_name="./Data/files/"+video_file_name,
             audio_file_path="./Data/Segmented_Outputs/Audio/audio.wav",
             mono_sound_path="./Data/Segmented_Outputs/Audio/mono_sound.wav",
             output_transcript_file_path="./Data/Segmented_Outputs/Text/transcript.json",
@@ -54,11 +64,67 @@ def generateReport():
         report= integrator.getOutputs()
         print(report)
         integrator.saveReport(f"./Data/Reports/{milliseconds_value}.json")
-        Pre_SQL_Query=f"UPDATE videos SET is_report_is_ready='Yes',report_file_name='{milliseconds_value}.json',report_creation_time=CURRENT_TIMESTAMP WHERE id={request.json['id']}"
+        Pre_SQL_Query=f"UPDATE files SET is_report_is_ready='Yes',report_file_name='{milliseconds_value}.json',report_creation_time=CURRENT_TIMESTAMP WHERE id={request.json['id']}"
         queryExecuter.execute(Pre_SQL_Query)
         Database_Connection.commit()
         queryExecuter.close()
         Database_Connection.close()
+        return jsonify({"report":report})
+    else:
+        return "error"
+    
+@App.route("/generateaudioreport",methods=['POST','GET'])
+def generateAudioReport():
+    if request.method=='POST':
+        Database_Connection,queryExecuter=connectToDatabase()
+        print("Report Generator is started")
+        Pre_SQL_Query=f"UPDATE files SET is_report_is_ready='Working' WHERE id={request.json['id']}"
+        queryExecuter.execute(Pre_SQL_Query)
+        Database_Connection.commit()
+        SELECT_Query=f"SELECT * FROM files WHERE id={request.json['id']}"
+        queryExecuter.execute(SELECT_Query)
+        result=queryExecuter.fetchone()
+        print(result[2])
+        audio_file_name=result[2]
+        milliseconds_value=round(time.time()*1000)
+        print("Generating Report......")
+        integrator=Integrator()
+        integrator.setModelsAndParameters(
+            audio_recognizer_model_path="../../Utils/Audio_Recognizer_Model",
+            audio_model="../../Audio Based Emotion Analysis/Model/DefinedModel.h5",
+            text_model="../../Text Based Emotion Analysis/Model/Model.joblib",
+            text_vectorizer="../../Text Based Emotion Analysis/Model/Vectorizer.pickle"
+        )
+        integrator.setFilePaths(
+            audio_file_path="./Data/files/"+audio_file_name,
+            mono_sound_path="./Data/Segmented_Outputs/Audio/mono_sound.wav",
+            output_transcript_file_path="./Data/Segmented_Outputs/Text/transcript.json",
+            output_timestamp_json_path="./Data/Segmented_Outputs/Text/timestamp.json"
+        )
+        integrator.generateAudioOutputs()
+        report= integrator.getAudioOutputs()
+        print(report)
+        integrator.saveReport(f"./Data/Reports/{milliseconds_value}.json")
+        Pre_SQL_Query=f"UPDATE files SET is_report_is_ready='Yes',report_file_name='{milliseconds_value}.json',report_creation_time=CURRENT_TIMESTAMP WHERE id={request.json['id']}"
+        queryExecuter.execute(Pre_SQL_Query)
+        Database_Connection.commit()
+        queryExecuter.close()
+        Database_Connection.close()
+        return jsonify({"report":report})
+    else:
+        return "error"    
+
+@App.route("/gettextreport",methods=['POST','GET'])
+def generateTextReport():
+    if request.method=='POST':
+        print("Generating Report")
+        integrator=Integrator()
+        integrator.setModelsAndParameters(
+            text_model="../../Text Based Emotion Analysis/Model/Model.joblib",
+            text_vectorizer="../../Text Based Emotion Analysis/Model/Vectorizer.pickle"
+        )
+        report= integrator.getTextReport(request.json['transcript'])
+        print(report)
         return jsonify({"report":report})
     else:
         return "error"
@@ -67,7 +133,7 @@ def generateReport():
 def getReport():
     if request.method=='POST':
         Database_Connection,queryExecuter=connectToDatabase()
-        SQL_Query=f"SELECT * FROM videos WHERE id={request.json['id']}"
+        SQL_Query=f"SELECT * FROM files WHERE id={request.json['id']}"
         queryExecuter.execute(SQL_Query)
         details=queryExecuter.fetchall()
         queryExecuter.close()
@@ -83,19 +149,16 @@ def getReport():
     else:
         return "error"
 
-
-
-
 @App.route("/deletefile",methods=['POST','GET'])
 def deleteFile():
     if request.method=='POST':
         Database_Connection,queryExecuter=connectToDatabase()
-        SQL_Query=f"SELECT * FROM videos WHERE id={request.json['id']}"
+        SQL_Query=f"SELECT * FROM files WHERE id={request.json['id']}"
         queryExecuter.execute(SQL_Query)
         video=queryExecuter.fetchone()
         print(video)
-        os.remove(f"./Data/Videos/{video[2]}")
-        SQL_Query=f"DELETE FROM videos WHERE id={request.json['id']}"
+        os.remove(f"./Data/files/{video[2]}")
+        SQL_Query=f"DELETE FROM files WHERE id={request.json['id']}"
         queryExecuter.execute(SQL_Query)
         Database_Connection.commit()
         queryExecuter.close()

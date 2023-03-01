@@ -38,13 +38,13 @@ def getVideoList():
     if request.method=='POST':
         Database_Connection,queryExecuter=connectToDatabase()
         print("Post Method")
-        SQL_Query="SELECT * FROM videos"
+        SQL_Query="SELECT * FROM files"
         queryExecuter.execute(SQL_Query)
-        list_of_videos=queryExecuter.fetchall()
-        print(list_of_videos)
+        list_of_files=queryExecuter.fetchall()
+        print(list_of_files)
         queryExecuter.close()
         Database_Connection.close()
-        return jsonify({"videos_list":list_of_videos})
+        return jsonify({"files_list":list_of_files})
     else:
         return "False"
 @App.route('/getreportlist',methods=['POST','GET'])
@@ -55,7 +55,7 @@ def getReportList():
     if request.method=='POST':
         Database_Connection,queryExecuter=connectToDatabase()
         print("Post Method")
-        SQL_Query="SELECT * FROM videos WHERE is_report_is_ready='Yes';"
+        SQL_Query="SELECT * FROM files WHERE is_report_is_ready='Yes';"
         queryExecuter.execute(SQL_Query)
         report_list=queryExecuter.fetchall()
         print(report_list)
@@ -140,16 +140,16 @@ def uploadAdminFile():
         file_name=f"{Logged_in_Admin['id']}{file_name_hash}.{extension}"
         print(file_name)
         file.filename=file_name
-        Pre_SQL_Query=f"SELECT * FROM videos WHERE storage_name='{file_name}';"
+        Pre_SQL_Query=f"SELECT * FROM files WHERE storage_name='{file_name}';"
         queryExecuter.execute(Pre_SQL_Query)
         result=queryExecuter.fetchall()
         if len(result)==0:
-            SQL_Query=f"INSERT INTO videos(video_name,storage_name,uploaded_by) VALUES('{old_file_name}','{file_name}','{Logged_in_Admin['id']}');"
+            SQL_Query=f"INSERT INTO files(video_name,storage_name,uploaded_by) VALUES('{old_file_name}','{file_name}','{Logged_in_Admin['id']}');"
             queryExecuter.execute(SQL_Query)
             Database_Connection.commit()
             print("upload file is running")
             print(file)
-            file.save(os.path.dirname(__file__)+f"\\Data\\Videos\\{file_name}")
+            file.save(os.path.dirname(__file__)+f"\\Data\\files\\{file_name}")
             queryExecuter.close()
             Database_Connection.close()
             return jsonify({'data':"File is uploaded successfully"})
@@ -170,13 +170,13 @@ def getUploadedFilesList():
         return "error"
     if request.method=='POST':
         Database_Connection,queryExecuter=connectToDatabase()
-        SQL_Query=f"SELECT * FROM videos WHERE uploaded_by='{Logged_in_Admin['id']}';"
+        SQL_Query=f"SELECT * FROM files WHERE uploaded_by='{Logged_in_Admin['id']}';"
         queryExecuter.execute(SQL_Query)
-        list_of_videos=queryExecuter.fetchall()
-        print(list_of_videos)
+        list_of_files=queryExecuter.fetchall()
+        print(list_of_files)
         queryExecuter.close()
         Database_Connection.close()
-        return jsonify({"data":list_of_videos})
+        return jsonify({"data":list_of_files})
     else:
         return "error"
 

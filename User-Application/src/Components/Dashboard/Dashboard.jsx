@@ -15,7 +15,7 @@ function Dashboard() {
     })
     return (
         <>
-            <div id="homePageContainer">
+            <div id="DashboardPageContainer">
                 <Header />
                         <section className="landingPageImage">
                             <h1>Welcome To InterView Result Predictor</h1>

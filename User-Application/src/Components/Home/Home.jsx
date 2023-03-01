@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../Templates/Footer';
 import Header from '../Templates/Header';
+import { NavLink } from 'react-router-dom';
 function Home() {
     return (
         <>
@@ -9,7 +10,7 @@ function Home() {
                 <section id="landingPageImage">
                     <h1>Welcome To Integrated Emotion Detection System</h1>
                     <p>Here, We try to predict the emotion using image of Human Faces, Transcripts, Audios in fine-grained classes</p>
-                    <button><a href="/dashboard">Try Now</a></button>
+                    <button><NavLink to="/dashboard">Try Now</NavLink></button>
                 </section>
                 <h1 className='centeredMainHeading' style={{ color: "black", textAlign: "center" }}>Process flow on This Site</h1>
                 <section id="processFlow">

@@ -325,6 +325,27 @@ function Report() {
                                     />
                                 </div>
                                 <h1 className="centeredMainHeading">
+                                    Fluency Score for 10 seconds interval
+                                </h1>
+                                <div className="mainGraphs">
+                                    <Chart
+                                        options={{
+                                            xaxis: {
+                                                categories: Array(reportData.audio_data.fluency_output.length).keys()
+                                            }
+                                        }}
+                                        series={[
+                                            {
+                                                name: "Fluency Score",
+                                                data: reportData.audio_data.fluency_output
+                                            }
+                                        ]}
+                                        type="line"
+                                        width="1200"
+                                        height="500"
+                                    />
+                                </div>
+                                <h1 className="centeredMainHeading">
                                     Cumulative Emotions of Video
                                 </h1>
                                 <div className="mainGraphs">
