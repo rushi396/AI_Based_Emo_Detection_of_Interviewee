@@ -200,6 +200,48 @@ def getUploadedFilesListofUser():
         return jsonify({"data":list_of_files})
     else:
         return "error"
+    
+    
+@App.route("/getuploadedvideolistofuser",methods=['POST','GET'])
+def getUploadedVideosListofUser():
+    global Logged_in_User
+    if Logged_in_User["isLogin"]==False:
+        return "error"
+    if request.method=='POST':
+        Database_Connection,queryExecuter=connectToDatabase()
+        SQL_Query=f"SELECT * FROM files WHERE uploaded_by='{Logged_in_User['id']}' and type='video';"
+        queryExecuter.execute(SQL_Query)
+        list_of_files=queryExecuter.fetchall()
+        print(list_of_files)
+        queryExecuter.close()
+        Database_Connection.close()
+        return jsonify({"data":list_of_files})
+    else:
+        return "error"
+@App.route("/getuploadedaudiolistofuser",methods=['POST','GET'])
+def getUploadedAudiosListofUser():
+    global Logged_in_User
+    if Logged_in_User["isLogin"]==False:
+        return "error"
+    if request.method=='POST':
+        Database_Connection,queryExecuter=connectToDatabase()
+        SQL_Query=f"SELECT * FROM files WHERE uploaded_by='{Logged_in_User['id']}' and type='audio';"
+        queryExecuter.execute(SQL_Query)
+        list_of_files=queryExecuter.fetchall()
+        print(list_of_files)
+        queryExecuter.close()
+        Database_Connection.close()
+        return jsonify({"data":list_of_files})
+    else:
+        return "error"
+
+
+
+
+
+
+
+
 
 @App.route("/recordvideo",methods=["POST"])
 def recordVideo():

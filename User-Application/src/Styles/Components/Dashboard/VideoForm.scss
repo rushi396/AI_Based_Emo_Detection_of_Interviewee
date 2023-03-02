@@ -7,6 +7,9 @@
     margin: 10px;
     min-height: 70vh;
     background: rgba(0, 255, 255, 0.404);
+    width: 100vw;
+    background: url("https://images.unsplash.com/photo-1543536448-d209d2d13a1c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") no-repeat;
+    background-size: cover;
     form{
         min-width: 600px;
         margin: 20px;
@@ -14,9 +17,8 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background: url("https://images.unsplash.com/photo-1543536448-d209d2d13a1c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") no-repeat;
-        background-size: cover;
         min-height: 300px;
+        border: 1px solid black;
         h1{
             color: black;
             margin: 40px 0;

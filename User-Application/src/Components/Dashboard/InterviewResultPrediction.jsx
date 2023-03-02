@@ -32,10 +32,6 @@ function InterviewResultPrediction() {
     }
     return (
         <>
-            <div className='formsContainer'>
-                <VideoUpload updateRefresh={updateRefreshValue}/>
-                <AudioUpload updateRefresh={updateRefreshValue}/>
-            </div>
             <div className="recordVideoContainer">
                 <div className="description">
                     <h1>Here You can Also Submit Video by Using our recording Feature</h1>
@@ -50,7 +46,7 @@ function InterviewResultPrediction() {
                 </div>
                 <button onClick={recordVideo}> { !recordingStatus?"Start Recording":"Recording is in progress"}</button>
             </div>
-            <UploadedList update={refresh}/>
+            <UploadedList update={refresh} text="Recently Uploaded Files" url="/getuploadedfilelistofuser"/>
         </>
     )
 }

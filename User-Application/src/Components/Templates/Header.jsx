@@ -26,6 +26,8 @@ function Header() {
                     login.user ? (
                         <>
                     <NavLink to="/textreport">Text Analysis</NavLink>
+                    <NavLink to="/audioreport">Audio Analysis</NavLink>
+                    <NavLink to="/videoreport">Video Analysis</NavLink>
                             
                         </>
                     ) : (

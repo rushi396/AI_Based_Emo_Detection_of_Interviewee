@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-function UploadedList({ update }) {
+function UploadedList({ update,text,url}) {
     let [videoList, updateVideoList] = useState([])
     async function getListOfVideos() {
         try {
-            let response = await fetch("/getuploadedfilelistofuser", {
+            let response = await fetch(url, {
                 method: "POST"
             })
             let result = await response.json()
@@ -67,7 +67,7 @@ function UploadedList({ update }) {
     }
     return (
         <div className='UploadedFilesList'>
-            <h1>Recently Uploaded Videos</h1>
+            <h1>{text}</h1>
             {
                 !!videoList && videoList.length > 0 ? (
                     <>
