@@ -11,4 +11,4 @@ yarn.lock
 data_reference.txt
 
 Temporary_Storage
-TransferLearningModelEfficientNetB7.h5
+TransferLearningModelInceptionV3.h5
