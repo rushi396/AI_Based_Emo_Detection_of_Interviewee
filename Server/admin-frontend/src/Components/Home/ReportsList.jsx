@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function ReportsList() {
     let [reportList, updatereportList] = useState([])
@@ -16,7 +16,7 @@ function ReportsList() {
         }
     }
     useEffect(() => {
-      getListOfReports()
+        getListOfReports()
     }, [])
     return (
         <>

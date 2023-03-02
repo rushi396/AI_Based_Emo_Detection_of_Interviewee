@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-function VideoUpload({updateRefresh}) {
+function VideoUpload({ updateRefresh }) {
     let [file, updateFile] = useState(null)
     let [filename, updateFileName] = useState("Select File")
     useEffect(() => {
@@ -11,7 +11,7 @@ function VideoUpload({updateRefresh}) {
     async function submitTheFile(event) {
         event.preventDefault()
         console.log(file);
-        if (!!file && filename!=="") {
+        if (!!file && filename !== "") {
             console.log(file.name);
             let extension = file.name.split(".")[file.name.split(".").length - 1];
             console.log(extension);
@@ -25,13 +25,13 @@ function VideoUpload({updateRefresh}) {
                     try {
                         let formData = new FormData();
                         formData.append("file", file ? file : "");
-                        let response =  await fetch("/uploaduserfile", {
+                        let response = await fetch("/uploaduserfile", {
                             method: "POST",
                             body: formData,
                         });
                         console.log(response);
                         let data = await response.json();
-                        console.log(data.data)   
+                        console.log(data.data)
                         window.alert(data.data)
                         updateRefresh(filename)
                         updateFileName("")
@@ -50,11 +50,11 @@ function VideoUpload({updateRefresh}) {
         <div className='VideoFormContainer' id='VideoFormContainer'>
             <form onSubmit={submitTheFile}>
                 <h1>Select Video File To Upload</h1>
-                <label htmlFor="file">{filename===""?"Select File":filename}</label>
+                <label htmlFor="file">{filename === "" ? "Select File" : filename}</label>
                 <input type="file" onChange={(event) => {
                     updateFile(event.target.files[0])
                     console.log(event.target.files[0]);
-                    updateFileName(event.target.files[0]?.name?event.target.files[0].name:"")
+                    updateFileName(event.target.files[0]?.name ? event.target.files[0].name : "")
                 }} name="file" id="file" required />
                 <button type="submit">Submit File</button>
             </form>

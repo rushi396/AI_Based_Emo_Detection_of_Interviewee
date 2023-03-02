@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-function AudioUpload({updateRefresh}) {
+function AudioUpload({ updateRefresh }) {
     let [audiofile, updateaudiofile] = useState(null)
     let [audiofilename, updateaudiofileName] = useState("Select file")
     useEffect(() => {
@@ -11,7 +11,7 @@ function AudioUpload({updateRefresh}) {
     async function submitTheaudiofile(event) {
         event.preventDefault()
         console.log(audiofile);
-        if (!!audiofile && audiofilename!="") {
+        if (!!audiofile && audiofilename != "") {
             console.log(audiofile.name);
             let extension = audiofile.name.split(".")[audiofile.name.split(".").length - 1];
             console.log(extension);
@@ -24,13 +24,13 @@ function AudioUpload({updateRefresh}) {
                     try {
                         let formData = new FormData();
                         formData.append("file", audiofile ? audiofile : "");
-                        let response =  await fetch("/uploadaudiofile", {
+                        let response = await fetch("/uploadaudiofile", {
                             method: "POST",
                             body: formData,
                         });
                         console.log(response);
                         let data = await response.json();
-                        console.log(data.data)   
+                        console.log(data.data)
                         window.alert(data.data)
                         updateRefresh(audiofilename)
                         updateaudiofileName("")
@@ -49,11 +49,11 @@ function AudioUpload({updateRefresh}) {
         <div className='AudioFormContainer' id='AudioFormContainer'>
             <form onSubmit={submitTheaudiofile}>
                 <h1>Select Audio file To Upload</h1>
-                <label htmlFor="audiofile">{audiofilename===""?"Select file":audiofilename}</label>
+                <label htmlFor="audiofile">{audiofilename === "" ? "Select file" : audiofilename}</label>
                 <input type="file" onChange={(event) => {
                     updateaudiofile(event.target.files[0])
                     console.log(event.target.files[0]);
-                    updateaudiofileName(event.target.files[0]?.name?event.target.files[0].name:"")
+                    updateaudiofileName(event.target.files[0]?.name ? event.target.files[0].name : "")
                 }} name="file" id="audiofile" required />
                 <button type="submit">Submit file</button>
             </form>

@@ -18,4 +18,4 @@ function updateUser(state, action) {
     return state;
 }
 
-export {userInitialState,updateUser}
+export { userInitialState, updateUser }

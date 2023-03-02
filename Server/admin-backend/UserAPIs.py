@@ -1,5 +1,4 @@
 from App import *
-from Processing import *
 
 Logged_in_User={
     "isLogin":False,
@@ -11,12 +10,10 @@ def checkLogin():
     if Logged_in_User["isLogin"]==False:
         return "error"
 
-
 @App.route("/")
 def main():
     global Logged_in_User
     return f"Admin API {Logged_in_User['isLogin']}"
-
 
 @App.route('/registeruser',methods=['POST','GET'])
 def registerUser():
@@ -118,7 +115,6 @@ def uploadUserFile():
     else:
         return "error"
 
-
 @App.route('/uploadaudiofile',methods=['POST','GET'])
 def uploadAudioFile():
     global Logged_in_User
@@ -159,7 +155,6 @@ def uploadAudioFile():
     else:
         return "error"
 
-
 @App.route("/getuserreport",methods=['POST','GET'])
 def getUserReport():
     global Logged_in_User
@@ -183,7 +178,6 @@ def getUserReport():
     else:
         return "error"
 
-
 @App.route("/getuploadedfilelistofuser",methods=['POST','GET'])
 def getUploadedFilesListofUser():
     global Logged_in_User
@@ -200,7 +194,6 @@ def getUploadedFilesListofUser():
         return jsonify({"data":list_of_files})
     else:
         return "error"
-    
     
 @App.route("/getuploadedvideolistofuser",methods=['POST','GET'])
 def getUploadedVideosListofUser():
@@ -234,14 +227,6 @@ def getUploadedAudiosListofUser():
         return jsonify({"data":list_of_files})
     else:
         return "error"
-
-
-
-
-
-
-
-
 
 @App.route("/recordvideo",methods=["POST"])
 def recordVideo():

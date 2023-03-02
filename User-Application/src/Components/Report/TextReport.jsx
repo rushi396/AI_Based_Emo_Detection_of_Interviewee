@@ -148,7 +148,7 @@ function TextReport() {
                                     />
                                 </div>
                             </section>
-                        <div className="printButton">
+                            <div className="printButton">
                                 <button onClick={() => { window.print() }}>Print Report</button>
                                 <p>Please Set Paper size as 3A, Scale as Custom and it's Value as 70</p>
                                 <div className="classLists">

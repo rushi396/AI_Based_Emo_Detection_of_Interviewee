@@ -1,5 +1,4 @@
 from App import *
-from Processing import *
 Logged_in_Admin={
     "isLogin":True,
     "username":"Shiva",
@@ -144,7 +143,7 @@ def uploadAdminFile():
         queryExecuter.execute(Pre_SQL_Query)
         result=queryExecuter.fetchall()
         if len(result)==0:
-            SQL_Query=f"INSERT INTO files(video_name,storage_name,uploaded_by) VALUES('{old_file_name}','{file_name}','{Logged_in_Admin['id']}');"
+            SQL_Query=f"INSERT INTO files(file_name,storage_name,uploaded_by) VALUES('{old_file_name}','{file_name}','{Logged_in_Admin['id']}');"
             queryExecuter.execute(SQL_Query)
             Database_Connection.commit()
             print("upload file is running")

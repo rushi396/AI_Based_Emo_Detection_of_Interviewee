@@ -445,10 +445,10 @@ function Report() {
                                 <p>Please Set Paper size as 3A, Scale as Custom and it's Value as 70 (for better view)</p>
                                 <div className="classLists">
                                     <span><strong> Indexing Information</strong></span>
-                                <span>0 for 😡Anger</span><span>1 for 😞Disgust</span><span>2 for 😨Fear</span><span>3 for 😀Happy</span><span>4 for 😔Sad</span><span>5 for 😱Surprise</span>
+                                    <span>0 for 😡Anger</span><span>1 for 😞Disgust</span><span>2 for 😨Fear</span><span>3 for 😀Happy</span><span>4 for 😔Sad</span><span>5 for 😱Surprise</span>
+                                </div>
                             </div>
-                            </div>
-                            
+
                         </div >
                     </>
                 ) : (

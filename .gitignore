@@ -2,7 +2,6 @@
 /node_modules
 *.php
 __pycache__
-*.pickle
 /Image Based Emotion Analysis/*/DefinedModel.h5
 /Image Based Emotion Analysis/*/*/DefinedModel.h5
 *.do

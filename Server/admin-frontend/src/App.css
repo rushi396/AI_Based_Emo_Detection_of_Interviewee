@@ -13,7 +13,6 @@
 	word-wrap: break-word;
 }
 
-
 button,
 span,
 a,
@@ -21,7 +20,7 @@ li,
 label,
 svg,
 i,
-img{
+img {
 	cursor: pointer;
 }
 

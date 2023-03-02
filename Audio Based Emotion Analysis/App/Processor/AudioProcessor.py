@@ -2,7 +2,7 @@ import librosa
 import numpy
 from .Variables import *
 import tensorflow
-    
+
 class InputProcessor:
     def __init__(self) -> None:
         print("Audio Processor is initialized")
@@ -23,6 +23,15 @@ class InputProcessor:
             mfcc_value = numpy.mean(mfcc_sequence.T, axis=0)
             Array_of_mfcc_sequence.append(mfcc_value)
         return numpy.array(Array_of_mfcc_sequence)
+    def getSpeechFluencyMeasure(audio_path,no_of_seconds=10):
+        audio_data, sampling_rate = librosa.load(audio_path)
+        counter=0
+        fluent_sums=[]
+        while True:
+            fluent_sums.append(sum(abs(audio_data[counter:counter+sampling_rate*no_of_seconds])))
+            counter=counter+sampling_rate*no_of_seconds
+            if counter>=len(audio_data):break
+        return fluent_sums
 
 class ModelProcessor:
     def __init__(self):

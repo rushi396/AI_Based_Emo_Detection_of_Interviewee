@@ -22,12 +22,10 @@ function VideoReport() {
         <>
             <div id="DashboardPageContainer">
                 <Header />
-
                 <div className='formsContainer'>
                     <VideoUpload updateRefresh={updateRefreshValue} />
                 </div>
-
-                <UploadedList update={refresh} text="Recently Uploaded Videos" url="/getuploadedvideolistofuser"/>
+                <UploadedList update={refresh} text="Recently Uploaded Videos" url="/getuploadedvideolistofuser" />
             </div>
             <Footer />
         </>

@@ -13,9 +13,6 @@ import wave
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips
 
 
-
-
-
 with open('../../Utils/database_config.env') as file:
     credentials=file.read()
 credentials=credentials.split(" ")

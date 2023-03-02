@@ -5,24 +5,24 @@ import { useState } from 'react'
 import AudioUpload from './AudioUpload'
 
 function InterviewResultPrediction() {
-    let [recordingStatus,updateRecordingStatus]=useState(false)
-    let [refresh,updateRefresh]=useState(1)
+    let [recordingStatus, updateRecordingStatus] = useState(false)
+    let [refresh, updateRefresh] = useState(1)
     function updateRefreshValue(object) {
         updateRefresh(object)
     }
     async function recordVideo() {
         updateRecordingStatus(true)
         try {
-            let response=await fetch("/recordvideo",{
-                method:"POST",
-                headers:{
-                    "Content-Type":"Application/json"
+            let response = await fetch("/recordvideo", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "Application/json"
                 }
             })
-            let result=await response.json()
-            if (result.isDone==="Yes") {
+            let result = await response.json()
+            if (result.isDone === "Yes") {
                 window.alert("Recording is Completed")
-            }else{
+            } else {
                 window.alert("Some Error Occurred")
             }
         } catch (error) {
@@ -44,9 +44,9 @@ function InterviewResultPrediction() {
                         <li>If video not get listed, then please wait for some time it will get rendered accordingly</li>
                     </ul>
                 </div>
-                <button onClick={recordVideo}> { !recordingStatus?"Start Recording":"Recording is in progress"}</button>
+                <button onClick={recordVideo}> {!recordingStatus ? "Start Recording" : "Recording is in progress"}</button>
             </div>
-            <UploadedList update={refresh} text="Recently Uploaded Files" url="/getuploadedfilelistofuser"/>
+            <UploadedList update={refresh} text="Recently Uploaded Files" url="/getuploadedfilelistofuser" />
         </>
     )
 }

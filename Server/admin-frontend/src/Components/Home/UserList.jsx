@@ -18,10 +18,10 @@ function UserList() {
         try {
             let response = await fetch("/deleteuser", {
                 method: "POST",
-                headers:{
-                    "Content-Type":"Application/json"
+                headers: {
+                    "Content-Type": "Application/json"
                 },
-                body:JSON.stringify({id})
+                body: JSON.stringify({ id })
             })
             let result = await response.json()
             console.log(result);
@@ -75,7 +75,7 @@ function UserList() {
                                                     {value[4]}
                                                 </div>
                                                 <div className="removeBtn">
-                                                    <button onClick={()=>deleteUser(value[0])}>Remove</button>
+                                                    <button onClick={() => deleteUser(value[0])}>Remove</button>
                                                 </div>
                                             </div>
                                         )

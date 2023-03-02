@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../App'
-import { useState } from 'react';
 import SignIn from './SignIn';
 function Login() {
     let { login } = useContext(userContext)
@@ -11,10 +10,6 @@ function Login() {
             navigate("/")
         }
     })
-    let [toggleLoginPage, updateToggleLoginPage] = useState(0)
-    function updateLoginType(pageNo) {
-        updateToggleLoginPage(pageNo)
-    }
     return (
         <div id="loginPageContainer">
             <div className="intro">
@@ -26,7 +21,7 @@ function Login() {
             </div>
 
             <div className="loginFormContainer">
-                <SignIn/>
+                <SignIn />
             </div>
         </div>
     )

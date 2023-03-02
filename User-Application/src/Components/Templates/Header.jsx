@@ -17,24 +17,24 @@ function Header() {
                     <h1>
                         <NavLink to="/">Emotion Detection of Interviewee</NavLink>
                     </h1>
-                    <p style={{color:"white",fontSize:"0.8em"}}>Using Machine Learning, Deep Learning, Computer Vision and Natural Language Processing</p>
+                    <p style={{ color: "white", fontSize: "0.8em" }}>Using Machine Learning, Deep Learning, Computer Vision and Natural Language Processing</p>
                 </div>
                 <nav className={`DesktopNav ${window_width > 786 ? "display_flex" : "display_none"}`}>
-                <NavLink to="/">Home</NavLink>
+                    <NavLink to="/">Home</NavLink>
                     <NavLink to="/dashboard">dashboard</NavLink>
                     {
-                    login.user ? (
-                        <>
-                    <NavLink to="/textreport">Text Analysis</NavLink>
-                    <NavLink to="/audioreport">Audio Analysis</NavLink>
-                    <NavLink to="/videoreport">Video Analysis</NavLink>
-                            
-                        </>
-                    ) : (
-                        <>
-                        </>
-                    )
-                }
+                        login.user ? (
+                            <>
+                                <NavLink to="/textreport">Text Analysis</NavLink>
+                                <NavLink to="/audioreport">Audio Analysis</NavLink>
+                                <NavLink to="/videoreport">Video Analysis</NavLink>
+
+                            </>
+                        ) : (
+                            <>
+                            </>
+                        )
+                    }
                 </nav>
                 {
                     login.user ? (

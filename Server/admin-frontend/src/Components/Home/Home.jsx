@@ -12,7 +12,7 @@ function Home() {
     let { login } = useContext(userContext)
     let navigate = useNavigate()
     useEffect(() => {
-        if (login.user == false) {
+        if (login.user === false) {
             navigate('/logout')
         }
     })

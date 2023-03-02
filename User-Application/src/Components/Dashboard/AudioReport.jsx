@@ -9,7 +9,7 @@ import AudioUpload from './AudioUpload';
 function AudioReport() {
     let { login } = useContext(userContext)
     let navigate = useNavigate()
-    let [refresh,updateRefresh]=useState(1)
+    let [refresh, updateRefresh] = useState(1)
     function updateRefreshValue(object) {
         updateRefresh(object)
     }
@@ -22,12 +22,12 @@ function AudioReport() {
         <>
             <div id="DashboardPageContainer">
                 <Header />
-                
+
                 <div className='formsContainer'>
                     <AudioUpload updateRefresh={updateRefreshValue} />
                 </div>
 
-                <UploadedList update={refresh} text="Recently Uploaded Audios" url='getuploadedaudiolistofuser'/>
+                <UploadedList update={refresh} text="Recently Uploaded Audios" url='getuploadedaudiolistofuser' />
             </div>
             <Footer />
         </>

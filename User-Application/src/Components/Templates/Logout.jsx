@@ -6,8 +6,8 @@ import { userContext } from '../../App'
 function Logout() {
     let { updateLoginState } = useContext(userContext)
     let navigate = useNavigate()
-    useEffect(()=>{
-        updateLoginState({type:"LOGOUT",user:false,username:null})
+    useEffect(() => {
+        updateLoginState({ type: "LOGOUT", user: false, username: null })
         navigate('/login')
     })
     return (

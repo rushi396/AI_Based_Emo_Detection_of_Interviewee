@@ -18,10 +18,10 @@ function VideosList() {
         try {
             let response = await fetch("/deletefile", {
                 method: "POST",
-                headers:{
-                    "Content-Type":"Application/json"
+                headers: {
+                    "Content-Type": "Application/json"
                 },
-                body:JSON.stringify({id})
+                body: JSON.stringify({ id })
             })
             let result = await response.json()
             console.log(result);
@@ -75,7 +75,7 @@ function VideosList() {
                                                     {value[4]}
                                                 </div>
                                                 <div className="removeBtn">
-                                                    <button onClick={()=>deleteVideo(value[0])}>Remove</button>
+                                                    <button onClick={() => deleteVideo(value[0])}>Remove</button>
                                                 </div>
                                             </div>
                                         )
