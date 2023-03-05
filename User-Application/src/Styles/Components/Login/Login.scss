@@ -2,8 +2,7 @@
 	.loginFormContainer {
 		min-height: 82vh;
 		margin: 20px;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
 		justify-content: center;
 		align-items: center;
 	}

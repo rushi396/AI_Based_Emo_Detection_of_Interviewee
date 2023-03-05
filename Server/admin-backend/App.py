@@ -45,10 +45,10 @@ def generateReport():
         integrator.setModelsAndParameters(
             face_cascade=face_cascade,
             audio_recognizer_model_path="../../Utils/Audio_Recognizer_Model",
-            image_model="../../Image Based Emotion Analysis/Model/TransferLearningModel.h5",
-            audio_model="../../Audio Based Emotion Analysis/Model/DefinedModel.h5",
-            text_model="../../Text Based Emotion Analysis/Model/Model.joblib",
-            text_vectorizer="../../Text Based Emotion Analysis/Model/Vectorizer.pickle"
+            image_model="../../Model/Image/TransferLearningModel.h5",
+            audio_model="../../Model/Audio/DefinedModel.h5",
+            text_model="../../Model/Text/Model.joblib",
+            text_vectorizer="../../Model/Text/Vectorizer.pickle"
         )
         integrator.setFilePaths(
             file_name="./Data/files/"+video_file_name,
@@ -88,9 +88,9 @@ def generateAudioReport():
         integrator=Integrator()
         integrator.setModelsAndParameters(
             audio_recognizer_model_path="../../Utils/Audio_Recognizer_Model",
-            audio_model="../../Audio Based Emotion Analysis/Model/DefinedModel.h5",
-            text_model="../../Text Based Emotion Analysis/Model/Model.joblib",
-            text_vectorizer="../../Text Based Emotion Analysis/Model/Vectorizer.pickle"
+            audio_model="../../Model/Audio/DefinedModel.h5",
+            text_model="../../Model/Text/Model.joblib",
+            text_vectorizer="../../Model/Text/Vectorizer.pickle"
         )
         integrator.setFilePaths(
             audio_file_path="./Data/files/"+audio_file_name,
@@ -117,8 +117,8 @@ def generateTextReport():
         print("Generating Report")
         integrator=Integrator()
         integrator.setModelsAndParameters(
-            text_model="../../Text Based Emotion Analysis/Model/Model.joblib",
-            text_vectorizer="../../Text Based Emotion Analysis/Model/Vectorizer.pickle"
+            text_model="../../Model/Text/Model.joblib",
+            text_vectorizer="../../Model/Text/Vectorizer.pickle"
         )
         report= integrator.getTextReport(request.json['transcript'])
         print(report)

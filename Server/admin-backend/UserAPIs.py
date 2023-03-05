@@ -2,7 +2,7 @@ from App import *
 
 Logged_in_User={
     "isLogin":False,
-    "name":"Shiva",
+    "name":"Tarun",
     "id":""
 }
 def checkLogin():
@@ -250,9 +250,9 @@ def recordVideo():
                 data=stream.read(1024)
                 frames.append(data)
                 videoWriter.write(frame)
-                cv2.putText(frame, "Recording is in progress", (50,30),color=(255,0,0),fontFace=cv2.FONT_ITALIC,fontScale=1,thickness=3)
+                cv2.putText(frame, "Recording is in progress", (80,30),color=(255,0,0),fontFace=cv2.FONT_ITALIC,fontScale=1,thickness=2)
             else:
-                cv2.putText(frame, "Recording is not yes started", (50,30),color=(0,0,255),fontFace=cv2.FONT_ITALIC,fontScale=1,thickness=3)
+                cv2.putText(frame, "Recording is not yet started", (100,30),color=(0,0,255),fontFace=cv2.FONT_ITALIC,fontScale=1,thickness=2)
             cv2.imshow('frame', frame)
             if cv2.waitKey(1)==32:
                 is_recording_started=True

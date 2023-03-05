@@ -1,8 +1,8 @@
 from App import *
 Logged_in_Admin={
     "isLogin":True,
-    "username":"Shiva",
-    "id":"ec8b82289fbe76fc4d9146a2b8202f60"
+    "username":"Tarun",
+    "id":""
 }
 
 @App.route("/admin")

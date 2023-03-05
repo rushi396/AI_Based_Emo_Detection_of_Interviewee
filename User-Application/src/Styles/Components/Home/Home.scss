@@ -19,12 +19,12 @@
 			margin: 30px 0;
 			font-size: 30px;
 			padding: 5px 50px;
-			background-color: aqua;
+			background-color: rgb(221, 181, 38);
 			border-radius: 10px;
 			font-weight: bolder;
 		}
 		button:hover {
-			background-color: green;
+			background-color: rgb(0, 155, 93);
 		}
 	}
 	#processFlow {
@@ -42,7 +42,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background: #81ecec;
+			background: #ba78ff;
 			border-radius: 10px;
 			font-size: 22px;
 		}
@@ -51,23 +51,28 @@
 		display: flex;
 		justify-content: space-evenly;
 		align-items: center;
-		flex-direction: column;
+		flex-wrap: wrap;
 		min-height: 30vh;
 		.dataType {
+			border-radius: 10px;
 			margin: 10px;
-			background-color: blue;
-			padding: 10px 30px;
-			min-width: 100%;
+			padding: 30px;
+			background-image: url('http://www.pixelstalk.net/wp-content/uploads/2016/05/Gradient-Wallpaper.jpg');
+			max-width: 300px;
 			min-height: 300px;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			flex-wrap: wrap;
+			flex-direction: column;
+			// flex-wrap: wrap;
 			font-size: 30px;
 			img {
-				width: 700px;
-				height: 300px;
-				margin-right: 30px;
+				width: 200px;
+				height: 200px;
+				border-radius: 10px;
+			}
+			h2{
+				font-size: 0.8em;
 			}
 		}
 	}

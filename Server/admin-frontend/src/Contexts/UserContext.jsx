@@ -1,6 +1,6 @@
 let userInitialState = {
     user: false,
-    username: "Shiva",
+    username: "Tarun",
 }
 function updateUser(state, action) {
     if (action.type === "LOGIN") {

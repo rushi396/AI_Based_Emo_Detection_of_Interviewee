@@ -17,7 +17,7 @@ function Header() {
                     <h1>
                         <NavLink to="/">Emotion Detection of Interviewee</NavLink>
                     </h1>
-                    <p style={{ color: "white", fontSize: "0.8em" }}>Using Machine Learning, Deep Learning, Computer Vision and Natural Language Processing</p>
+                    <p style={{ color: "white", fontSize: "0.9em" }}>Using Machine Learning, Deep Learning, Computer Vision and Natural Language Processing</p>
                 </div>
                 <nav className={`DesktopNav ${window_width > 786 ? "display_flex" : "display_none"}`}>
                     <NavLink to="/">Home</NavLink>
@@ -41,7 +41,7 @@ function Header() {
                         <>
                             <div className="user">
                                 <div className="name" onClick={() => { updateToggleOptions(!toggleOptions) }}>
-                                    Hello Shivkumar
+                                    Hello {login.username}
                                 </div>
                                 {
                                     toggleOptions ? (<>
