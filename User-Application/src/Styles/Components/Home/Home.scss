@@ -19,7 +19,7 @@
 			margin: 30px 0;
 			font-size: 30px;
 			padding: 5px 50px;
-			background-color: rgb(221, 181, 38);
+			background-color: #FF8300;
 			border-radius: 10px;
 			font-weight: bolder;
 		}
@@ -28,15 +28,18 @@
 		}
 	}
 	#processFlow {
-		padding: 20px;
+		padding: 30px 10px 20px 30px;
+		margin: 0px 30px 0px 30px;
+		border-radius: 15px;
 		display: flex;
 		justify-content: space-evenly;
 		min-height: 30vh;
 		align-items: center;
+		background-color: #121212;
 		.processItem {
 			color: black;
 			border: 1px solid blue;
-			min-width: 330px;
+			min-width: 300px;
 			margin: 10px;
 			min-height: 100px;
 			display: flex;
@@ -57,7 +60,7 @@
 			border-radius: 10px;
 			margin: 10px;
 			padding: 30px;
-			background-image: url('http://www.pixelstalk.net/wp-content/uploads/2016/05/Gradient-Wallpaper.jpg');
+			background-image: url('http://www.https://coolors.co/gradient-maker/ff8300-121212?position=35,86&opacity=100,100&type=linear&rotation=225.net/wp-content/uploads/2016/05/Gradient-Wallpaper.jpg');
 			max-width: 300px;
 			min-height: 300px;
 			display: flex;
