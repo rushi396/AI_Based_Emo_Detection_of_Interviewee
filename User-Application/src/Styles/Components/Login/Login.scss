@@ -8,9 +8,9 @@
 	}
 }
 #Login_Form {
-	background: white;
-	min-height: 550px;
-	min-width: 400px;
+	background: #FF8;
+    min-height: 380px;
+    min-width: 350px;
 	@media screen and (max-width: 768px) {
 		min-width: 300px;
 	}
@@ -21,8 +21,9 @@
 	border: 1px solid #006266;
 	border-radius: 10px;
 	h1 {
-		color: green;
+		color: #121212;
 		margin: 20px;
+		font-family: 'Times New Roman', Times, serif;
 	}
 	input {
 		margin: 10px;
@@ -36,8 +37,10 @@
 	> button {
 		font-size: 25px;
 		padding: 5px 50px;
-		background-color: coral;
+		background-color: #FF8300;
 		border-radius: 10px;
 		margin: 20px;
+		color: #121212;
+		font-family: 'Times New Roman', Times, serif;
 	}
 }

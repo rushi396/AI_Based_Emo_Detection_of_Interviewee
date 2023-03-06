@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 function Home() {
     return (
         <>
+        
             <div id="homePageContainer">
                 <Header />
                 <section id="landingPageImage">
@@ -12,19 +13,25 @@ function Home() {
                     <p>Here, We try to predict the emotions of person using image of facial images, transcripts and audios in fine-grained classes</p>
                     <button><NavLink to="/dashboard">Try Now</NavLink></button>
                 </section>
-                <h1 className='centeredMainHeading' style={{ color: "black", textAlign: "center" }}>Process flow of Site</h1>
+                <h1 className='centeredMainHeading' style={{ color: "#FF8300", textAlign: "center" }}>Process flow of Site</h1>
                 <section id="processFlow">
-                    <div className="processItem">
-                        1. Upload Video
+                    <div className='processFlow-card'>
+                        <div className="processItem">
+                            1. Upload Video
+                        </div>
                     </div>
-                    <div className="processItem">
-                        2. Analysis By Our System
+                    <div className='processFlow-card'>
+                        <div className="processItem">
+                            2. Analysis By Our System
+                        </div>
                     </div>
-                    <div className="processItem">
-                        3. Emotion Analysis Report
+                    <div className='processFlow-card'>
+                        <div className="processItem">
+                            3. Emotion Analysis Report
+                        </div>
                     </div>
                 </section>
-                <h1 className='centeredMainHeading' style={{ color: "black", textAlign: "center" }}>Multimodal Analysis Types</h1>
+                <h1 className='centeredMainHeading' style={{ color: "#FF8300", textAlign: "center" }}>Multimodal Analysis Types</h1>
                 <section id="dataTypes">
                     <div className="dataType">
                         <img src="https://images.unsplash.com/photo-1543769657-fcf1236421bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" alt="" />

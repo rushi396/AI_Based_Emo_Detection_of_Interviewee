@@ -147,7 +147,7 @@ function UploadedList({ update, text, url }) {
                     <>
                         <div className="MessageContainer">
                             <h1>You have Not uploaded any videos</h1>
-                            <p>(●'◡'●)</p>
+                            <p>Follow above instructions to upload video</p>
                         </div>
                     </>
                 )

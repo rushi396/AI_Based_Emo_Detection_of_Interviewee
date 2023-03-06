@@ -72,7 +72,7 @@ function TextReport() {
                 reportData ? (
                     <>
                         <div id="ReportPageContainer">
-                            <h2>Report For Give Text</h2>
+                            <h2>Report For Given Text</h2>
                             <section className="ReportContainer">
                                 <div className="initialDetails">
                                     <div className="Details">

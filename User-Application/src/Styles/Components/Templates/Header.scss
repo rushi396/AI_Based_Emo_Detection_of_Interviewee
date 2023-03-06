@@ -24,7 +24,7 @@ header {
 		font-size: 1.2em;
 	}
 	.user {
-		background-color: aqua;
+		background-color: #FF8300;
 		padding: 5px 10px;
 		border-radius: 5px;
 		position: relative;
@@ -36,8 +36,9 @@ header {
 			width: 100%;
 			position: absolute;
 			margin-left: -10px;
-			background: aqua;
-			border-radius: 10px;
+			margin-top: 10px;
+			background: #F18;
+			border-radius: 5px;
 			a {
 				display: block;
 				padding: 5px 10px;

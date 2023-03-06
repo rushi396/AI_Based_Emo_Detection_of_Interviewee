@@ -1,6 +1,6 @@
 .landingPageImage {
 	min-height: 95vh;
-	background: url("https://images.unsplash.com/photo-1485579149621-3123dd979885?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80")
+	background: url("../../../Assets/images/bg.jpg")
 		no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -10,16 +10,18 @@
 		margin-top: 10%;
 		max-width: 700px;
 		font-size: 50px;
-		text-shadow: 5px 5px 5px blue;
+		color: #FF8300;
+		text-shadow: 2px 2px 2px #121212;
 		font-weight: bolder;
 	}
 	button {
 		margin: 30px 0;
-		font-size: 30px;
+		font-size: 20px;
 		padding: 5px 50px;
-		background-color: rgb(221, 181, 38);
+		background-color: #FF8300;
 		border-radius: 10px;
-		font-weight: bolder;
+		font-weight: bold;
+		color: black;
 	}
 	button:hover {
 		background-color: rgb(0, 155, 93);
