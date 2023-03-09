@@ -163,3 +163,20 @@ def deleteFile():
         return jsonify({"data":"Deleted Successfully"})
     else:
         return "error"
+    
+
+def checkPendingReports():
+    Database_Connection,queryExecuter=connectToDatabase()
+    queryExecuter.execute("SELECT id FROM files WHERE is_report_is_ready='Working'")
+    result=queryExecuter.fetchall()
+    print(result)
+    if len(result)>0:
+        print("need to restart pending work")
+    else:
+        print("No pending work")
+
+
+@App.route("/change_working_status/<id>")
+def changeWorkingStatus(id):
+    Database_Connection,queryExecuter=connectToDatabase()
+    queryExecuter(f"UPDATE TABLE files SET ")

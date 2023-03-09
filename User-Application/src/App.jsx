@@ -2,11 +2,11 @@ import './App.css';
 import './Styles/index.scss';
 import { Routes, Route } from "react-router-dom";
 import Home from './Components/Home/Home';
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 import { userInitialState, updateUser } from './Contexts/UserContext';
 import Logout from './Components/Templates/Logout';
 import Login from './Components/Login/Login';
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, checkTargetForNewValues } from "framer-motion"
 import Dashboard from './Components/Dashboard/Dashboard';
 import Report from './Components/Report/Report';
 import AudioReportPage from './Components/Report/AudioReport';
@@ -17,6 +17,27 @@ import VideoReport from './Components/Dashboard/VideoReport';
 let userContext = createContext()
 function App() {
     let [login, updateLoginState] = useReducer(updateUser, userInitialState);
+    async function CheckUthentication() {
+        try {
+            let response=await fetch("/checkauthentication",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"Application/json"
+                }
+            })
+            if(response.status===200){
+                let result=await response.json();
+                updateLoginState({ type: "LOGIN", user: true, username: result?.response?.name })
+            }else{
+                updateLoginState({ type: "LOGOUT", user: false, username: null })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(()=>{
+        CheckUthentication()
+    },[])
     return (
         <AnimatePresence>
             <userContext.Provider value={{ login, updateLoginState }}>

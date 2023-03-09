@@ -1,5 +1,5 @@
 let userInitialState = {
-    user: false,
+    user: true,
     username: "Tarun",
 }
 function updateUser(state, action) {

@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../App'
 import { useContext } from 'react';
+import { Vortex } from 'react-loader-spinner'
 
 function Register(object) {
     let { updateLoginState } = useContext(userContext)
+    let [loader, updateLoader] = useState(false);
+
     let navigate = useNavigate()
     let [loginDetails, updateLoginDetails] = useState({
         "name": "",
@@ -21,6 +24,7 @@ function Register(object) {
         })
     }
     async function registerUser(event) {
+        updateLoader(true)
         event.preventDefault()
         if (loginDetails.email != "" && loginDetails.name != "" && loginDetails.password != "" && loginDetails.phone != "") {
             try {
@@ -45,6 +49,7 @@ function Register(object) {
         } else {
             window.alert("Please Fill all details")
         }
+        updateLoader(false)
     }
     return (<>
         <div className='Register_Container'>
@@ -52,6 +57,15 @@ function Register(object) {
                 <h1>
                     Register Here
                 </h1>
+                <Vortex
+                        visible={loader}
+                        height="80"
+                        width="80"
+                        ariaLabel="vortex-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="vortex-wrapper"
+                        colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+                    />
                 <input type="text" value={loginDetails.name} onChange={updateDetails} name="name" id="name" placeholder='Enter Your Name' required />
                 <input type="email" value={loginDetails.email} onChange={updateDetails} name="email" id="email" placeholder='Enter Your Email' required />
                 <input type="number" value={loginDetails.phone} onChange={updateDetails} name="phone" id="phone" placeholder='Enter Your Phone Number' required />

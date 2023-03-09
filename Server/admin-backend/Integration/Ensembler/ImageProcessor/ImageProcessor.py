@@ -66,6 +66,7 @@ class ModelProcessor:
         print(prediction)
         return class_list[prediction]
     def predictClasses(self,array_of_images):
+        print(array_of_images)
         prediction=self.model.predict(array_of_images)
         prediction=[class_list[numpy.argmax(values)] for values in prediction]
         return prediction

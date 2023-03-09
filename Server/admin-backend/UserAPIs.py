@@ -1,7 +1,7 @@
 from App import *
 
 Logged_in_User={
-    "isLogin":True,
+    "isLogin":False,
     "name":"Tarun",
     "id":""
 }
@@ -299,4 +299,19 @@ def recordVideo():
         Database_Connection.close()
     else:
         return "error"
-    
+
+
+
+
+@App.route("/checkauthentication",methods=['POST','GET'])
+def checkAuthentication():
+    if Logged_in_User["isLogin"]==True:
+        return jsonify({
+            "response":{
+            "name":Logged_in_User["name"]
+            }
+        })
+    else:
+        return jsonify({
+            "response":"error"
+        }),404
