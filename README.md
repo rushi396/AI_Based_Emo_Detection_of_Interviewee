@@ -9,9 +9,9 @@
 <h3>Created by :</h3>
 <ul>
     <li>RUSHIKESH A. GHODAKE</li>
-    <li>ADITYA JADHAV</li>
-    <li>KARTIK</li>
-    <li>TARUN</li>
+    <li>AADITYA JADHAV</li>
+    <li>KARTHIK MURALIDHARAN</li>
+    <li>G. TARUN VARMA</li>
 </ul>
 <hr>
 
